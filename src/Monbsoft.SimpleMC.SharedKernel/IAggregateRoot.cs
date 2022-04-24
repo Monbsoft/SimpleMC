@@ -1,5 +1,5 @@
 ﻿namespace Monbsoft.SimpleMC.SharedKernel;
 
-public interface IDomainEvent
+public interface IAggregateRoot
 {
 }

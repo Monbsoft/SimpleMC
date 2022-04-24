@@ -4,15 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Monbsoft.SimpleMC.Application.Domain
+namespace Monbsoft.SimpleMC.Application.Domain;
+
+public enum Operator : ushort
 {
-    public enum Operator : ushort
-    {
-        Asign = '\0',
-        Plus = '+',
-        Minus = '-',
-        Times = '*',
-        Divide = '/',
-        Pow = '^',
-    }
+    Plus = '+',
+    Minus = '-',
+    Times = '*',
+    Divide = '/',
+    Pow = '^',
 }

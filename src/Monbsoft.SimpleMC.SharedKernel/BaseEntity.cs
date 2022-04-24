@@ -1,49 +1,42 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace Monbsoft.SimpleMC.SharedKernel;
 
-namespace Monbsoft.SimpleMC.SharedKernel
+public abstract class BaseEntity
 {
-    public abstract class BaseEntity
+
+    public Guid Id { get; protected set; }
+
+    public static bool operator ==(BaseEntity a, BaseEntity b)
     {
+        if (ReferenceEquals(a, null) && ReferenceEquals(b, null))
+            return true;
 
-        public Guid Id { get; protected set; }
+        if (ReferenceEquals(a, b) || ReferenceEquals(b, null))
+            return false;
 
-        public static bool operator ==(BaseEntity a, BaseEntity b)
-        {
-            if (ReferenceEquals(a, null) && ReferenceEquals(b, null))
-                return true;
+        return a.Equals(b);
+    }
 
-            if (ReferenceEquals(a, b) || ReferenceEquals(b, null))
-                return false;
+    public static bool operator !=(BaseEntity a, BaseEntity b)
+    {
+        return !(a == b);
+    }
 
-            return a.Equals(b);
-        }
+    public override bool Equals(object? obj)
+    {
+        var other = obj as BaseEntity;
 
-        public static bool operator !=(BaseEntity a, BaseEntity b)
-        {
-            return !(a == b);
-        }
+        if (ReferenceEquals(other, null))
+            return false;
 
-        public override bool Equals(object? obj)
-        {
-            var other = obj as BaseEntity;
-
-            if (ReferenceEquals(other, null))
-                return false;
-
-            if (ReferenceEquals(other, this))
-                return true;
+        if (ReferenceEquals(other, this))
+            return true;
 
 
-            return other.Id == Id;
-        }
+        return other.Id == Id;
+    }
 
-        public override int GetHashCode()
-        {
-            return Id.GetHashCode();
-        }
+    public override int GetHashCode()
+    {
+        return Id.GetHashCode();
     }
 }

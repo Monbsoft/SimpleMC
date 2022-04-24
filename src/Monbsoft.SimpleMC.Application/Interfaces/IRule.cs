@@ -5,10 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Monbsoft.SimpleMC.Application.Interfaces
+namespace Monbsoft.SimpleMC.Application.Interfaces;
+
+public interface IRule
 {
-    public interface IRule
-    {
-        Calculation Generate();
-    }
+    Calculation Generate();
 }
