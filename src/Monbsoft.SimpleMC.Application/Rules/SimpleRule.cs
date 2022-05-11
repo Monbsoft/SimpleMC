@@ -1,5 +1,5 @@
-﻿using Monbsoft.SimpleMC.Application.Domain;
-using Monbsoft.SimpleMC.Application.Interfaces;
+﻿using Monbsoft.SimpleMC.Application.Interfaces;
+using Monbsoft.SimpleMC.Application.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,11 +16,12 @@ public class SimpleRule : IRule
     /// Generates a calculation
     /// </summary>
     /// <returns>A calculation</returns>
-    public Calculation Generate()
+    public OperationBase Generate()
     {
         double operand1 = Convert.ToDouble(random.Next(100));
         double operand2 = Convert.ToDouble(random.Next(100));
+       
 
-        return new Calculation(Operator.Plus, operand1, operand2);
+        return Addition.Create(operand1, operand2);
     }
 }

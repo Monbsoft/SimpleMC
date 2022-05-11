@@ -1,5 +1,5 @@
-﻿using Monbsoft.SimpleMC.Application.Domain;
-using Monbsoft.SimpleMC.Application.Interfaces;
+﻿using Monbsoft.SimpleMC.Application.Interfaces;
+using Monbsoft.SimpleMC.Application.Models;
 
 namespace Monbsoft.SimpleMC.Application.Services;
 
@@ -25,7 +25,7 @@ public class Calculator
 
         for (int i = 0; i < 10; i++)
         {
-            part.AddCalculation(rule.Generate());
+            part.AddOperation(rule.Generate());
         }
 
         return part;
