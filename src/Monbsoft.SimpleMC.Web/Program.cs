@@ -1,11 +1,11 @@
-using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
-using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.EntityFrameworkCore;
+using Monbsoft.SimpleMC.Application.Interfaces;
+using Monbsoft.SimpleMC.Application.Services;
 using Monbsoft.SimpleMC.Web.Areas.Identity;
 using Monbsoft.SimpleMC.Web.Data;
+using MudBlazor.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,8 +18,12 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
+builder.Services.AddMudServices();
 builder.Services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<IdentityUser>>();
 builder.Services.AddSingleton<WeatherForecastService>();
+builder.Services.AddSingleton<IRuleManager, RuleManager>();
+builder.Services.AddSingleton<Calculator>();
+
 
 var app = builder.Build();
 

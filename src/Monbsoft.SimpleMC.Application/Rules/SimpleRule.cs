@@ -16,7 +16,7 @@ public class SimpleRule : IRule
     /// Generates a calculation
     /// </summary>
     /// <returns>A calculation</returns>
-    public OperationBase Generate()
+    public OperationBase Generate(GameContext context)
     {
         double operand1 = Convert.ToDouble(random.Next(100));
         double operand2 = Convert.ToDouble(random.Next(100));

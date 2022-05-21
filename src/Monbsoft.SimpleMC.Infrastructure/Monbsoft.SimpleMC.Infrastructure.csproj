@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Monbsoft.SimpleMC.Application\Monbsoft.SimpleMC.Application.csproj" />
+  </ItemGroup>
+
 </Project>

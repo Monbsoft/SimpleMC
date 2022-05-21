@@ -1,9 +1,30 @@
 ﻿@page "/"
+@using Monbsoft.SimpleMC.Application.Services
+@inject Calculator Calculator;
 
 <PageTitle>Index</PageTitle>
+
 
 <h1>Hello, world!</h1>
 
 Welcome to your new app.
 
+<MCalcul Value="@_part?.Current?.Calculation"/>
+
+
 <SurveyPrompt Title="How is Blazor working for you?" />
+
+@code {
+    private Part _part;
+
+    protected override void OnInitialized()
+    {
+
+        var operations = Calculator.GenerateOperations(new GameContext());
+        _part = new Part(operations);
+        _part.MoveNext();
+    }
+
+}
+
+

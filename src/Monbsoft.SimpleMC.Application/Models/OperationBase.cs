@@ -1,6 +1,8 @@
-﻿namespace Monbsoft.SimpleMC.Application.Models;
+﻿using Monbsoft.SimpleMC.Application.Interfaces;
 
-public abstract class OperationBase
+namespace Monbsoft.SimpleMC.Application.Models;
+
+public abstract class OperationBase : IOperation
 {
     public OperationBase(Calculation calculation)
     {

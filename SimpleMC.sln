@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Monbsoft.SimpleMC.Infrastru
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Monbsoft.SimpleMC.SharedKernel", "src\Monbsoft.SimpleMC.SharedKernel\Monbsoft.SimpleMC.SharedKernel.csproj", "{EB0229D3-89A7-4653-9FFE-73EF60231862}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Monbsoft.SimpleMC.Web", "src\Monbsoft.SimpleMC.Web\Monbsoft.SimpleMC.Web.csproj", "{C1A5F649-CEA6-4148-8911-FB768C0622AD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Monbsoft.SimpleMC.Web", "src\Monbsoft.SimpleMC.Web\Monbsoft.SimpleMC.Web.csproj", "{C1A5F649-CEA6-4148-8911-FB768C0622AD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

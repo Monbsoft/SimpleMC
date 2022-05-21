@@ -1,6 +1,8 @@
-﻿namespace Monbsoft.SimpleMC.Application.Models;
+﻿using System.ComponentModel;
 
-public enum Operator : ushort
+namespace Monbsoft.SimpleMC.Application.Models;
+
+public enum Operator 
 {
     Plus = '+',
     Minus = '-',

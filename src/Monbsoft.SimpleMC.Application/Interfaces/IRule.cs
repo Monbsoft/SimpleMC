@@ -4,5 +4,5 @@ namespace Monbsoft.SimpleMC.Application.Interfaces;
 
 public interface IRule
 {
-    OperationBase Generate();
+    OperationBase Generate(GameContext context);
 }

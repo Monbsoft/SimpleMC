@@ -5,46 +5,34 @@ namespace Monbsoft.SimpleMC.Application.Services;
 
 public class Calculator
 {
-    private readonly List<IRule> _rules;
+    private readonly IRuleManager _ruleManager;
     private readonly Random _random;
 
-    public Calculator(List<IRule> rules)
+    public Calculator(IRuleManager ruleManager)
     {
-        _rules = rules;
         _random = new Random();
+
+        _ruleManager = ruleManager;
     }
 
     /// <summary>
-    /// Creates calculations by applying the rules.
+    /// Geneates operations by applying the rules.
     /// </summary>
     /// <returns></returns>
-    public Part CreatePart()
+    public List<OperationBase> GenerateOperations(GameContext context)
     {
-        var part = new Part();
-        var rule = ChooseRule();
+        if(context == null) throw new ArgumentNullException(nameof(context)); 
+
+        List<OperationBase> operations = new List<OperationBase>();
+        _ruleManager.Generate(context);
+        var rule = _ruleManager.Choosee(context);
 
         for (int i = 0; i < 10; i++)
         {
-            part.AddOperation(rule.Generate());
+            operations.Add(rule.Generate(context));
         }
 
-        return part;
+        return operations;
     }
-
-    /// <summary>
-    /// Chooses a rule at random
-    /// </summary>
-    /// <returns>A calculation rule</returns>
-    private IRule ChooseRule()
-    {
-
-        if (_rules.Count == 1)
-            return _rules.First();
-
-        int index = _random.Next(0, _rules.Count);
-        return _rules[index];
-
-    }
-
 
 }

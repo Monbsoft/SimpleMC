@@ -1,0 +1,36 @@
+﻿@if (Value != null)
+{
+    <MudGrid>
+        <MudItem xs="4">
+            <MudPaper>
+                <MudText Typo="Typo.h3">@Value.Operand1</MudText>
+            </MudPaper>
+        </MudItem>
+        <MudItem xs="4">
+            <MudPaper>
+                <MudText Typo="Typo.h3"> @DisplayOperator(Value.Operator) </MudText> 
+            </MudPaper>
+        </MudItem>
+        <MudItem xs="4">
+            <MudPaper>
+                <MudText Typo="Typo.h3">@Value.Operand2</MudText>
+            </MudPaper>
+        </MudItem>
+        
+    </MudGrid>
+}
+
+@code {
+
+    [Parameter]
+    public Calculation? Value { get; set; }
+
+    private string DisplayOperator(Operator op) => op switch {
+        Operator.Plus => "+",
+        Operator.Minus => "-",
+        Operator.Times => "x",
+        Operator.Divide => "/",
+        _ => string.Empty
+    };
+
+}

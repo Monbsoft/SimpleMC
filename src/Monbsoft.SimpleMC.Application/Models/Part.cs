@@ -6,18 +6,23 @@ namespace Monbsoft.SimpleMC.Application.Models;
 public class Part : BaseEntity, IAggregateRoot
 {
     private readonly List<OperationBase> _operations;
+    private readonly IEnumerator<OperationBase> _enumerator;
 
-    public Part()
+    public Part(IEnumerable<OperationBase> operations)
     {
-        _operations = new List<OperationBase>();
+        if(operations == null) throw new ArgumentNullException(nameof(operations));
+        _enumerator = operations.GetEnumerator();
+        _operations = operations.ToList();
     }
 
-    public IEnumerable<OperationBase> Operations => _operations.AsReadOnly();
+    public int Count => _operations.Count;
+    public OperationBase Current => _enumerator.Current;
+    public bool HasNext => _operations.Any();
 
-
-    public void AddOperation(OperationBase operation)
+    public bool MoveNext()
     {
-        Guard.Against.Null(operation, nameof(operation));
-        _operations.Add(operation);
+        if(_operations.Any())
+            _operations.RemoveAt(0);
+        return _enumerator.MoveNext();
     }
 }
