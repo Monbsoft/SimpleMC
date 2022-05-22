@@ -1,0 +1,42 @@
+﻿@inject ISnackbar Snackbar
+<MCalcul ResponseChanged="@HandleResponseChanged" Value="@_operation?.Calculation"></MCalcul>
+
+@code {
+    private IOperation? _operation;
+    private bool? _isSuccess;
+
+    [Parameter]
+    public Part Part { get; set; }
+
+
+    protected override void OnParametersSet()
+    {
+        base.OnParametersSet();
+
+        _operation = Part.Current;
+    }
+
+    private void HandleResponseChanged(double? response)
+    {
+        if (response != null)
+        {
+            DisplayResponse(Part.Current.Check(response.Value));
+            Part.MoveNext();
+            _operation = Part.Current;
+            StateHasChanged();
+        }
+
+    }
+
+    private void DisplayResponse(bool check)
+    {
+        if(check)
+        {
+            Snackbar.Add("Correct", Severity.Success);
+        }
+        else
+        {
+            Snackbar.Add("Faux", Severity.Error);
+        }
+    }
+}

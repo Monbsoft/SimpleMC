@@ -11,4 +11,9 @@ public abstract class OperationBase : IOperation
 
     public Calculation Calculation { get; }
     public abstract double Result { get; }
+
+    public bool Check(double value)
+    {
+        return Result.Equals(value);
+    }
 }

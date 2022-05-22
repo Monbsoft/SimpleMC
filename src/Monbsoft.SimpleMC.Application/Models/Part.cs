@@ -11,6 +11,7 @@ public class Part : BaseEntity, IAggregateRoot
     public Part(IEnumerable<OperationBase> operations)
     {
         if(operations == null) throw new ArgumentNullException(nameof(operations));
+        Total = operations.Count();
         _enumerator = operations.GetEnumerator();
         _operations = operations.ToList();
     }
@@ -18,7 +19,7 @@ public class Part : BaseEntity, IAggregateRoot
     public int Count => _operations.Count;
     public OperationBase Current => _enumerator.Current;
     public bool HasNext => _operations.Any();
-
+    public int Total { get; }
     public bool MoveNext()
     {
         if(_operations.Any())

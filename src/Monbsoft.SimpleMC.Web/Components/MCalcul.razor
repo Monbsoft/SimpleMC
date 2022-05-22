@@ -1,19 +1,24 @@
 ﻿@if (Value != null)
 {
-    <MudGrid>
+    <MudGrid Class="ma-2">
         <MudItem xs="4">
             <MudPaper>
-                <MudText Typo="Typo.h3">@Value.Operand1</MudText>
+                <MudText Class="pa-10" Typo="Typo.h3" Align="Align.Center">@Value.Operand1</MudText>
             </MudPaper>
         </MudItem>
         <MudItem xs="4">
             <MudPaper>
-                <MudText Typo="Typo.h3"> @DisplayOperator(Value.Operator) </MudText> 
+                <MudText Class="pa-10" Typo="Typo.h3" Align="Align.Center"> @DisplayOperator(Value.Operator) </MudText> 
             </MudPaper>
         </MudItem>
         <MudItem xs="4">
             <MudPaper>
-                <MudText Typo="Typo.h3">@Value.Operand2</MudText>
+                <MudText Class="pa-10" Typo="Typo.h3" Align="Align.Center">@Value.Operand2</MudText>
+            </MudPaper>
+        </MudItem>
+        <MudItem xs="12">
+            <MudPaper Class="pa-5">
+                <MudTextField T="double?" ValueChanged="HandleValueChanged" Text="@_input" TextUpdateSuppression="false" />
             </MudPaper>
         </MudItem>
         
@@ -21,16 +26,32 @@
 }
 
 @code {
+        private string _input;
+        
+        [Parameter]
+        public Calculation? Value { get; set; }
 
-    [Parameter]
-    public Calculation? Value { get; set; }
+        [Parameter]
+        public EventCallback<double?> ResponseChanged { get; set; }
 
-    private string DisplayOperator(Operator op) => op switch {
-        Operator.Plus => "+",
-        Operator.Minus => "-",
-        Operator.Times => "x",
-        Operator.Divide => "/",
-        _ => string.Empty
-    };
 
+        private string DisplayOperator(Operator op) => op switch {
+            Operator.Plus => "+",
+            Operator.Minus => "-",
+            Operator.Times => "x",
+            Operator.Divide => "/",
+            _ => string.Empty
+        };
+        private Task HandleValueChanged(double? response)
+        {
+            if(response == null)
+            {
+                return Task.CompletedTask;
+            }
+            else 
+            {
+                _input = string.Empty;
+                return ResponseChanged.InvokeAsync(response);
+            }
+        }
 }
